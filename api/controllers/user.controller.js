@@ -80,7 +80,9 @@ export const savePost = async (req, res) => {
   const postId = req.body.postId;
   const tokenUserId = req.userId;
 
-  console.log(`[SAVE POST CALLED] Target PostID: ${postId}, UserID from token: ${tokenUserId}`);
+  console.log(
+    `[SAVE POST CALLED] Target PostID: ${postId}, UserID from token: ${tokenUserId}`
+  );
 
   try {
     const savedPost = await prisma.savedPost.findUnique({
@@ -109,10 +111,31 @@ export const savePost = async (req, res) => {
         },
       });
       console.log("[SAVE POST] Successfully created record:", savedPost);
-      res.status(200).json({ message: "Post saved list" });
+      res.status(200).json({ message: "Post saved" });
     }
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to update saved status!" });
+    res.status(500).json({ message: "Failed to delete users!" });
+  }
+};
+
+export const profilePosts = async (req, res) => {
+  const tokenUserId = req.params.userId;
+  try {
+    const userPosts = await prisma.post.findMany({
+      where: { userId: tokenUserId },
+    });
+    const saved = await prisma.savedPost.findMany({
+      where: { userId: tokenUserId },
+      include:{
+        post:true,
+      },
+    });
+
+    const savedPosts = saved.map(item=>item.post)
+    res.status(200).json({userPosts, savedPosts});
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Failed to get profile posts!" });
   }
 };
