@@ -59,7 +59,7 @@ export const getChat = async (req, res) => {
       },
       data: {
         seenBy: {
-          push: [tokenUserId],
+          push: tokenUserId,
         },
       },
     });
