@@ -46,7 +46,7 @@ export const login = async (req, res) => {
         
         const isPasswordValid = await bcrypt.compare(password, user.password);
         
-        if (!isPasswordValid) return res.status(401);
+        if (!isPasswordValid) return res.status(401).json({message:"Invalid Credentials!"});
         // GENERATE COOKIE TOKEN AND SEND TO THE USER
         
         // res.setHeader("Set-Cookie", "test=" + "myValue").json("success")
