@@ -5,30 +5,29 @@ import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
 
-  const {currentUser} = useContext(AuthContext)
+  // const {currentUser} = useContext(AuthContext)
 
-  // console.log(currentUser)
   return (
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">Find the animals</h1>
+          <h1 className="title">Reptile Rearing Methods Finder</h1>
           <p>
-            こちら葛飾区亀有公園前派出所
+            爬虫類の育成方法を見る
           </p>
           <SearchBar />
           <div className="boxes">
             <div className="box">
-              <h1>16+</h1>
-              <h2>Years of Experience</h2>
+              <h1>500種類</h1>
+              <h2>掲載予定</h2>
             </div>
             <div className="box">
-              <h1>200</h1>
-              <h2>Award Gained</h2>
+              <h1>簡単な検索</h1>
+              <h2>爬虫類を知れる</h2>
             </div>
             <div className="box">
-              <h1>2000+</h1>
-              <h2>Property Ready</h2>
+              <h1>独自の育成方法</h1>
+              <h2>公開可能</h2>
             </div>
           </div>
         </div>
